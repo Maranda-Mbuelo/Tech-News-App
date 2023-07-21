@@ -1,0 +1,38 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <form class="max-w-md mx-auto bg-white shadow-md rounded-lg px-8 py-6" (ngSubmit)="submitForm()" #loginForm="ngForm">
+      <div class="mb-6">
+        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+        <input type="email" id="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your email" [(ngModel)]="email" name="email" required>
+        <div *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].dirty" class="p-4 text-red-500">
+          Email field must be valid
+        </div>
+      </div>
+  
+      <div class="mb-6 relative">
+        <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+        <div class="relative">
+          <input type="{{ passwordVisible ? 'text' : 'password' }}" id="password" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500" placeholder="Enter your password" [(ngModel)]="password" name="password" required>
+          <button type="button" class="absolute inset-y-0 right-0 px-3 py-2" (click)="togglePasswordVisibility()">
+            <i class="fa-solid fa-eye" *ngIf="passwordVisible"></i>
+            <i class="fa-solid fa-eye-slash" *ngIf="!passwordVisible"></i>
+          </button>
+        </div>
+        <div *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].dirty" class="p-4 text-red-500">
+          Password field must be valid
+        </div>
+      </div>
+  
+      <div>
+        <button type="submit" [disabled]="!loginForm.valid" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">Login</button>
+      </div>
+    </form>
+
+    <div *ngIf="users.length > 0">
+      <h3>All Users:</h3>
+      <ul>
+        <li *ngFor="let user of users">{{ user.email }}</li>
+      </ul>
+    </div>
+    
+  </div>
+  

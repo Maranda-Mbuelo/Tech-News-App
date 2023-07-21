@@ -1,0 +1,42 @@
+<nav class="bg-gray-900 text-white">
+  <div class="container mx-auto px-4 py-2 flex items-center justify-between">
+    <a routerLink="/" class="text-xl font-bold">TechNews</a>
+
+    <!-- Menu Button for Mobile -->
+    <div class="ml-4 flex md:hidden">
+      <button class="text-gray-300 hover:text-white focus:outline-none focus:text-white" (click)="toggleMenu()">
+        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            [ngClass]="{'hidden': isMenuOpen, 'block': !isMenuOpen }"
+            d="M3 2a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V4a2 2 0 00-2-2H3zm2 2h10v10H5V4zm1 4a1 1 0 00-1 1v2a1 1 0 002 0V9a1 1 0 00-1-1zm3 0a1 1 0 10-2 0v2a1 1 0 102 0V9zm3 0a1 1 0 10-2 0v2a1 1 0 102 0V9z"
+          ></path>
+          <path
+            [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen }"
+            d="M2 6h16M2 10h16M2 14h16"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <ul class="hidden md:flex space-x-4 relative">
+      <li>
+        <a href="javascript:void(0)" class="hover:text-gray-300" (click)="toggleDropdown()">Categories</a>
+        <ul
+          *ngIf="isDropdownOpen"
+          class="dropdown-menu absolute bg-white py-2 rounded-md shadow-lg"
+          (clickOutside)="closeDropdown()"
+        >
+          <li><a routerLink="/category/technology" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Technology</a></li>
+          <li><a routerLink="/category/science" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Science</a></li>
+          <li><a routerLink="/category/gadgets" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Gadgets</a></li>
+        </ul>
+      </li>
+      <li>
+        <a routerLink="/about" routerLinkActive="active" class="hover:text-gray-300">About</a>
+      </li>
+      <li>
+        <a routerLink="/contact" routerLinkActive="active" class="hover:text-gray-300">Contact</a>
+      </li>
+    </ul>
+  </div>
+</nav>
